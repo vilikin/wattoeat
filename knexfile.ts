@@ -1,4 +1,4 @@
-import { knexConfig } from './src/config';
+import { knexConfig } from './src/knex';
 
 module.exports = {
   development: knexConfig,
