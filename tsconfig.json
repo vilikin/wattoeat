@@ -6,6 +6,10 @@
         "outDir": "dist",
         "lib": [
             "es2015"
+        ],
+        "typeRoots": [
+            "node_modules/@types",
+            "src/types"
         ]
     },
     "include": [
