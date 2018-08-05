@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { securityHandler } from './http/utils/security-handler';
+import { securityHandler } from './utils/security-utils';
 import * as boom from 'express-boom';
 import { getUsersHandler } from './http/get-users';
 
