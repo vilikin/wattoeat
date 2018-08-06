@@ -7,8 +7,7 @@
     "start": "tsc && node dist/index.js",
     "test": "jest",
     "seed-db": "knex seed:run",
-    "migrate-db": "knex migrate:latest",
-    "postinstall": "cp .env.sample .env && npm run seed-db && npm run migrate-db"
+    "migrate-db": "knex migrate:latest"
   },
   "author": "Vili Kinnunen",
   "license": "MIT",
