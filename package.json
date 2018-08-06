@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && node dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "seed-db": "knex seed:run",
+    "migrate-db": "knex migrate:latest",
+    "postinstall": "cp .env.sample .env && npm run seed-db && npm run migrate-db"
   },
   "author": "Vili Kinnunen",
   "license": "MIT",
