@@ -15,11 +15,18 @@ exports.up = async (knex: Knex) => {
     table.timestamps(true, true);
   });
 
+  await knex.schema.createTable('images', (table) => {
+    table.increments('id').primary();
+    table.string('file_name').notNullable();
+    table.integer('added_by').references('id').inTable('users').notNullable();
+    table.timestamps(true, true);
+  });
+
   await knex.schema.createTable('rounds', (table) => {
     table.increments('id').primary();
     table.integer('won_by').references('id').inTable('options').notNullable();
     table.integer('started_by').references('id').inTable('users').notNullable();
-    table.timestamps();
+    table.timestamps(true, true);
   });
 
   await knex.schema.createTable('round_options', (table) => {
@@ -34,7 +41,7 @@ exports.up = async (knex: Knex) => {
     table.integer('user').references('id').inTable('users').notNullable();
     table.integer('option').references('id').inTable('options').notNullable();
     table.integer('points').notNullable();
-    table.timestamps();
+    table.timestamps(true, true);
 
     table.primary(['round', 'user', 'option']);
   });
