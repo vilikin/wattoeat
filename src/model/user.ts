@@ -5,6 +5,8 @@ export interface User {
   name: string;
 }
 
-export function dbToUser(user: any): User {
+export function dbToUser(user?: any): User {
+  if (!user) return null;
+
   return _.pick(user, 'id', 'name');
 }

@@ -1,4 +1,5 @@
 import * as knexInstance from 'knex';
+import * as knexStringcase from 'knex-stringcase';
 import * as path from 'path';
 
 const BASE_PATH = path.join(__dirname, '..', 'db');
@@ -24,7 +25,8 @@ export const knexConfig = {
 
 export function getKnexConnection() {
   if (!knexConnection) {
-    knexConnection = knexInstance(knexConfig);
+    const options = knexStringcase(knexConfig);
+    knexConnection = knexInstance(options);
   }
 
   return knexConnection;
