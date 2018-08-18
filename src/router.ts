@@ -6,9 +6,11 @@ import { getUsersHandler } from './http/get-users';
 import { addOptionHandler } from './http/add-option';
 import { addImageHandler } from './http/add-image';
 import { addUserToRequest } from './utils/express-utils';
+import * as bodyParser from 'body-parser';
 
 const router = express.Router();
 
+router.use(bodyParser.json());
 router.use(boom());
 router.use(securityHandler);
 router.use(addUserToRequest);
