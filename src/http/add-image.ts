@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import {
   generateLocalFileName,
-  addImageToDb,
+  insertImageToDb,
 } from '../core/image-core';
-import { ImageWithoutId } from '../model/image';
+import { ImageInsertObject } from '../model/image';
 
 export async function addImageHandler(req: Request, res: Response) {
   const { image: imageFile } = req.files;
@@ -16,12 +16,13 @@ export async function addImageHandler(req: Request, res: Response) {
   try {
     const localFileName = generateLocalFileName(imageFile.name);
     imageFile.mv(process.cwd() + `/images/${localFileName}`);
-    const imageWithoutId: ImageWithoutId = {
+
+    const imageInsertObject: ImageInsertObject = {
       fileName: localFileName,
-      addedBy: req.user,
+      addedBy: req.user.id,
     };
 
-    const image = await addImageToDb(imageWithoutId);
+    const image = await insertImageToDb(imageInsertObject);
     res.json(image);
   } catch (err) {
     res.boom.badImplementation();

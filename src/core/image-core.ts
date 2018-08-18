@@ -3,10 +3,8 @@ import * as _ from 'lodash';
 import { getKnexConnection } from '../knex';
 import { getLastInsertedId } from '../utils/db-utils';
 import {
-  Image,
-  ImageWithoutId,
-  imageToDb,
-  dbToImage,
+  ImageInsertObject,
+  ImageInsertResultObject,
 } from '../model/image';
 
 const knex = getKnexConnection();
@@ -16,9 +14,11 @@ export function generateLocalFileName(originalFileName: string) {
   return `${timestamp}_${originalFileName}`;
 }
 
-export async function addImageToDb(image: ImageWithoutId): Promise<Image> {
+export async function insertImageToDb(
+  image: ImageInsertObject,
+): Promise<ImageInsertResultObject> {
   await knex('images')
-    .insert(imageToDb(image));
+    .insert(image);
 
   const id = await getLastInsertedId(knex);
 
