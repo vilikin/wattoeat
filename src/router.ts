@@ -13,11 +13,10 @@ const router = express.Router();
 router.use(bodyParser.json());
 router.use(boom());
 router.use(securityHandler);
-router.use(addUserToRequest);
 router.use(fileUpload());
 
 router.get('/users', getUsersHandler);
-router.post('/options', addOptionHandler);
-router.post('/images', addImageHandler);
+router.post('/options', addUserToRequest, addOptionHandler);
+router.post('/images', addUserToRequest, addImageHandler);
 
 export default router;
