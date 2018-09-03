@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { insertOptionToDb } from '../core/options-core';
+import { insertOptionToDb } from '../core/option-core';
 import { OptionInsertObject } from '../model/option';
 
 export async function addOptionHandler(req: Request, res: Response) {

@@ -5,7 +5,8 @@ import * as fileUpload from 'express-fileupload';
 import { getUsersHandler } from './http/get-users';
 import { addOptionHandler } from './http/add-option';
 import { addImageHandler } from './http/add-image';
-import { addUserToRequest } from './utils/express-utils';
+import { addRoundHandler } from './http/add-round';
+import { userMiddleware } from './utils/express-utils';
 import * as bodyParser from 'body-parser';
 
 const router = express.Router();
@@ -16,7 +17,8 @@ router.use(securityHandler);
 router.use(fileUpload());
 
 router.get('/users', getUsersHandler);
-router.post('/options', addUserToRequest, addOptionHandler);
-router.post('/images', addUserToRequest, addImageHandler);
+router.post('/options', userMiddleware, addOptionHandler);
+router.post('/images', userMiddleware, addImageHandler);
+router.post('/rounds', userMiddleware, addRoundHandler);
 
 export default router;

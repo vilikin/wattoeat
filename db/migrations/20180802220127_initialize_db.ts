@@ -24,8 +24,10 @@ exports.up = async (knex: Knex) => {
 
   await knex.schema.createTable('rounds', (table) => {
     table.increments('id').primary();
-    table.integer('won_by').references('id').inTable('options').notNullable();
+    table.integer('won_by').references('id').inTable('options');
     table.integer('started_by').references('id').inTable('users').notNullable();
+    table.timestamp('completed_at');
+    table.timestamp('canceled_at');
     table.timestamps(true, true);
   });
 

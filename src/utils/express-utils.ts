@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getUserById } from '../core/user-core';
 import { User } from '../model/user';
 
-export async function addUserToRequest(req: Request, res: Response, next: NextFunction) {
+export async function userMiddleware(req: Request, res: Response, next: NextFunction) {
   const idRaw = req.headers['x-user-id'];
 
   if (!idRaw) {
